@@ -53,7 +53,7 @@ class couchbase::install (
     'package': {
       package {'couchbase-server':
         ensure  => $::couchbase::version,
-        name    => 'couchbase-server',
+        name    => $::couchbase::package_name,
         notify  => Exec['couchbase-init'],
         require => Package[$::couchbase::params::openssl_package],
       }
