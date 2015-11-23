@@ -63,6 +63,7 @@ class couchbase
   $password          = 'password',
   $version           = $::couchbase::params::version,
   $edition           = $::couchbase::params::edition,
+  $package_name      = $::couchbase::params::package_name,
   $nodename          = $::fqdn,
   $server_group      = 'default',
   $install_method    = 'curl',
