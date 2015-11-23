@@ -24,6 +24,7 @@ class couchbase::params {
   $ensure              = 'present'
   $autofailover        = true
   $data_dir            = '/opt/couchbase/var/lib/couchbase/data'
+  $services            = ['data', 'query', 'index']
   $moxi_port           = '11311'
   $moxi_version        = '2.5.0'
 

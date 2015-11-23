@@ -68,7 +68,8 @@ class couchbase
   $install_method    = 'curl',
   $autofailover      = $::couchbase::params::autofailover,
   $data_dir          = $::couchbase::params::data_dir,
-  $index_dir        = undef,
+  $services          = $::couchbase::params::services,
+  $index_dir         = undef,
   $download_url_base = $::couchbase::params::download_url_base,
 ) inherits ::couchbase::params {
 
@@ -87,6 +88,12 @@ class couchbase
     validate_absolute_path($index_dir)
   }
   validate_string($download_url_base)
+  validate_array($services)
+  if !member($services, 'data') {
+    fail("[couchbase] Error services must contain at least \"data\"")
+  }
+  # Convert array to CSV string.
+  $services_string = join($services, ',')
 
   # Define initialized node as a couchbase node (This will always be true
   # so this is a safe assumption to make.
